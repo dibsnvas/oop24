@@ -1,0 +1,46 @@
+package problem2;
+
+public abstract class Piece {
+    private Color color;
+    private Position currentPosition;
+    private int value;
+    protected boolean isMoved = false;
+
+    public Piece(Color color, Position currentPosition) {
+        this.color = color;
+        this.currentPosition = currentPosition;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public Position getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(Position currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public abstract boolean isLegalMove(Position b);
+
+    public void setIsMoved(boolean isMoved) {
+        this.isMoved = isMoved;
+    }
+
+    public boolean isNotMoved() {
+        return !isMoved;
+    }
+
+    @Override
+    public abstract String toString();
+}

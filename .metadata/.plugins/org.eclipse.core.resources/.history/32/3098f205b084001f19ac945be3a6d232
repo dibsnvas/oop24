@@ -1,0 +1,21 @@
+package problem2;
+
+public class Queen extends Piece {
+    public Queen(Color color, Position currentPosition) {
+        super(color, currentPosition);
+        this.setValue(9);
+    }
+
+    @Override
+    public boolean isLegalMove(Position b) {
+        Position a = getCurrentPosition();
+        Rook testRook = new Rook(getColor(), a);
+        Bishop testBishop = new Bishop(getColor(), a);
+        return testRook.isLegalMove(b) || testBishop.isLegalMove(b);
+    }
+
+    @Override
+    public String toString() {
+        return (this.getColor() == Color.BLACK ? "♛" : "♕");
+    }
+}

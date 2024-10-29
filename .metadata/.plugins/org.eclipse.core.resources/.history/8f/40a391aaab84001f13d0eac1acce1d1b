@@ -1,0 +1,15 @@
+package problem1b;
+
+public class Test {
+    public static void main(String[] args) {
+        Author jamesCameron = new Author("James Cameron");
+
+        LibraryItem movie1 = new DVD("Titanik", jamesCameron, 1997, Category.ROMANCE, 194);
+
+        ((DVD) movie1).rate(8);
+        ((DVD) movie1).rate(6);
+        ((DVD) movie1).rate(10);
+
+        System.out.println(movie1);
+    }
+}

@@ -1,0 +1,31 @@
+package problem1b;
+
+public class DVD extends LibraryItem{
+	private Category category;
+    private int durationInMinutes;
+    private int ratingSum;
+    private int ratingCount;
+    
+    public DVD(String title, Author author, int publicationYear, Category category, int durationInMinutes) {
+    	super(title, author, publicationYear);
+        this.category = category;
+        this.durationInMinutes = durationInMinutes;
+    }
+    public Category getCategory() {
+    	return category;
+    }
+    public void getDurationInMinutes() {
+    	return durationInMinutes;
+    }
+    public void setDurationInMinutes(int durationInMinutes) {
+        this.durationInMinutes = durationInMinutes;
+    }
+    public void rate(int rating) {
+        ratingSum += Math.max(Math.min(10, rating), 1); // Ratings are capped between 1 and 10
+        ratingCount++;
+    }
+
+    public String toString() {
+        return "DVD: " + super.toString() + ", category=\"" + category + "\", duration=" + durationInMinutes + " (min), rating=" + (ratingCount > 0 ? ratingSum / ratingCount : 0);
+    }
+}

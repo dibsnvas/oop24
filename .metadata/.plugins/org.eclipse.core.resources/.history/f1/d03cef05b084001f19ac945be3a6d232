@@ -1,0 +1,19 @@
+package problem2;
+
+public class Rook extends Piece {
+    public Rook(Color color, Position currentPosition) {
+        super(color, currentPosition);
+        this.setValue(5);
+    }
+
+    @Override
+    public boolean isLegalMove(Position b) {
+        Position a = getCurrentPosition();
+        return b.getX() == a.getX() || a.getY() == b.getY();
+    }
+
+    @Override
+    public String toString() {
+        return (this.getColor() == Color.BLACK ? "♜" : "♖");
+    }
+}

@@ -1,0 +1,18 @@
+package problem2;
+
+public class King extends Piece {
+    public King(Color color, Position currentPosition) {
+        super(color, currentPosition);
+    }
+
+    @Override
+    public boolean isLegalMove(Position b) {
+        Position a = getCurrentPosition();
+        return Math.abs(b.getX() - a.getX()) <= 1 && Math.abs(b.getY() - a.getY()) <= 1;
+    }
+
+    @Override
+    public String toString() {
+        return (this.getColor() == Color.BLACK ? "♚" : "♔");
+    }
+}

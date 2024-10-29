@@ -1,0 +1,66 @@
+package problem5;
+
+public abstract class Person {
+    private String name;
+    private int age;
+    private Animal pet;
+    private Animal temporaryPet;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void assignPet(Animal newPet) {
+    	if (this.pet != null && !arePetsCompatible(this.pet, newPet)) {
+            throw new IllegalArgumentException("Cannot assign a new pet (" + newPet.getName() + ") because it's incompatible with the current pet (" + this.pet.getName() + ").");
+        }
+        this.pet = newPet;
+    }
+}
+
+    public void removePet() {
+        this.pet = null;
+    }
+
+    public boolean hasPet() {
+        return this.pet != null;
+    }
+
+    public void leavePetWith(Person caretaker) {
+        if (!hasPet()) {
+            throw new IllegalStateException(this.name + " doesn't have a pet to leave.");
+        }
+        caretaker.assignTemporaryPet(this.pet);
+        this.removePet();
+    }
+
+    public void retrievePetFrom(Person caretaker) {
+        if (!caretaker.isCaringForTemporaryPet()) {
+            throw new IllegalStateException(caretaker.name + " is not taking care of any pet.");
+        }
+        this.assignPet(caretaker.temporaryPet);
+        caretaker.temporaryPet = null;
+    }
+
+    public void assignTemporaryPet(Animal pet) {
+        this.temporaryPet = pet;
+    }
+
+    public boolean isCaringForTemporaryPet() {
+        return this.temporaryPet != null;
+    }
+
+    public abstract String getOccupation();
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Age: " + age + ", Pet: " + (pet != null ? pet.getName() : "None") +
+               (isCaringForTemporaryPet() ? " (Caring for: " + temporaryPet.getName() + ")" : "");
+    }
+    private boolean arePetsCompatible(Animal pet1, Animal pet2) {
+        return !(pet1 instanceof Cat && pet2 instanceof Dog) &&
+               !(pet1 instanceof Dog && pet2 instanceof Cat);
+    }
+}
+}

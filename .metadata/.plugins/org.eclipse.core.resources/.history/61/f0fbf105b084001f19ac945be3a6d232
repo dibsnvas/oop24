@@ -1,0 +1,29 @@
+package problem2;
+
+public class Pawn extends Piece {
+    public Pawn(Color color, Position currentPosition) {
+        super(color, currentPosition);
+        this.setValue(1);
+    }
+
+    @Override
+    public boolean isLegalMove(Position b) {
+        Position a = getCurrentPosition();
+        if (getColor() == Color.BLACK) {
+            if (a.getY() == 7) {
+                return a.getX() == b.getX() && a.getY() - b.getY() <= 2;
+            }
+            return a.getX() == b.getX() && a.getY() - b.getY() == 1;
+        } else {
+            if (a.getY() == 2) {
+                return a.getX() == b.getX() && b.getY() - a.getY() <= 2;
+            }
+            return a.getX() == b.getX() && b.getY() - a.getY() == 1;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return (this.getColor() == Color.BLACK ? "♟" : "♙");
+    }
+}

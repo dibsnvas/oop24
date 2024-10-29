@@ -1,0 +1,35 @@
+package problem5;
+
+public class Test {
+    public static void main(String[] args) {
+        Dog dog = new Dog("Aktos", 3);
+        Cat cat = new Cat("Belok", 2);
+        Zebra zebra = new Zebra("WAAAAH", 1);
+
+        Employee diana = new Employee("Diana", 19, "DevART");
+        Student pakita = new Student("Pakita", 18, "KBTU");
+        PhDStudent ayan = new PhDStudent("Ayan", 19, "BSC");
+
+        diana.assignPet(dog);
+        pakita.assignPet(cat);
+        ayan.assignPet(zebra);
+
+        PersonRegistry registry = new PersonRegistry();
+        registry.addPerson(diana);
+        registry.addPerson(pakita);
+        registry.addPerson(ayan);
+
+        System.out.println("Initial State:");
+        registry.printDetails();
+
+        diana.leavePetWith(pakita);
+        System.out.println("\nAfter transferring pet from Employee to Student:");
+        registry.printDetails();
+
+        try {
+            ayan.assignPet(dog);
+        } catch (IllegalArgumentException e) {
+            System.out.println("\nError: " + e.getMessage());
+        }
+    }
+}

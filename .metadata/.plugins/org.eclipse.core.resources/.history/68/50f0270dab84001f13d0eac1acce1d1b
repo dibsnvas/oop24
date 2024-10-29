@@ -1,0 +1,17 @@
+package problem1b;
+
+public class LibraryItem {
+	private String title;
+	private Author author;
+	private int publicationYear;
+	
+	public LibraryItem(String title, Author author, int publicationYear) {
+		this.title = title;
+		this.author = author;
+		this.publicationYear = publicationYear;
+	}
+	public String getTitle() {
+		retunr title;
+	}
+	public void 
+}
