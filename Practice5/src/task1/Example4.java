@@ -2,41 +2,58 @@ package task1;
 
 import java.util.*;
 
+
 public class Example4
 {
-    public static void main(String[] args)
-    {
-       double                 leftOperand, result, rightOperand;
-       String                 leftString, operator, rightString;
-       StringTokenizer        tokenizer;
+    public static void main(String[] args){
+       double leftOperand=0.0, result = 0.0, rightOperand=0.0;
+       String leftString, operator, rightString;
+       
        Scanner in = new Scanner(System.in);
+       StringTokenizer tokenizer, spaceTokenizer;
+       spaceTokenizer = new StringTokenizer(in.nextLine(), " ", false);
+       
+       
+       while(spaceTokenizer.hasMoreTokens()) {
+    	   tokenizer = new StringTokenizer(spaceTokenizer.nextToken(), "+-/*", true); 
+    	   try{
+    		   leftString = tokenizer.nextToken();
+    	       operator = tokenizer.nextToken();
+    	       rightString = tokenizer.nextToken();
+    	         
+    	       try {
+    	    	   leftOperand = Double.parseDouble(leftString);
+    	       }catch(NumberFormatException nfe) {
+    	    	   System.out.println("First operand is not a number");
+    	       }
+    	       try {
+    	    	   rightOperand = Double.parseDouble(rightString);
+    	       }catch(NumberFormatException nfe) {
+    	    	   System.out.println("Second operand is not a number");
+    	       }
 
-       tokenizer = new StringTokenizer(in.nextLine(), "+", true);
+    	       if (operator.equals("+"))
+    	    	   result = leftOperand + rightOperand;
+    	       else if (operator.equals("-"))
+    	    	   result = leftOperand - rightOperand;
+    	       else if (operator.equals("*"))
+    	    	   result = leftOperand * rightOperand;
+    	       else if (operator.equals("/"))
+    	    	   result = leftOperand / rightOperand;
+    	           if(Double.isInfinite(result)) {
+    	        	   throw new ArithmeticException();
+    	           }
 
-       try
-       {
-          leftString   = tokenizer.nextToken();
-          operator     = tokenizer.nextToken();
-          rightString  = tokenizer.nextToken();
-
-          leftOperand  = Double.parseDouble(leftString);
-          rightOperand = Double.parseDouble(rightString);
-
-          if (operator.equals("+"))
-             result = leftOperand + rightOperand;
-          else
-             result = 0.0;
-
-          System.out.println("Result: " + result);
-       }
-       catch (NoSuchElementException nsee)
-       {
-          System.out.println("Invalid syntax");
-       }
-       catch (NumberFormatException nfe)
-       {
-          System.out.println("One or more operands is not a number");
-       }
+    	       System.out.println("Result: " + result);
+    	       }
+    	   catch (NoSuchElementException nsee){
+    		   System.out.println("Invalid syntax");
+    	   }catch (NumberFormatException nfe){
+    	       System.out.println("One or more operands is not a number");
+    	   }catch (ArithmeticException ae){
+    	       System.out.println("Error: Divide by 0");
+    	   }
+       }   
 
 
     }
